@@ -10,8 +10,8 @@ logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
 
 # load models
-palm_detector = load_model("palm_leaf_detector.keras")
-disease_model = load_model("palm_disease_classifier.keras")
+palm_detector = load_model("binary.keras")
+disease_model = load_model("disease.keras")
 
 labels = {
     0:"black_scorch", 
@@ -33,12 +33,12 @@ def preprocess_image(image):
         
 
 def check_palm_leaf(image_data):
-    """Check if image contains a palm leaf using binary classifier - BINARY PREDICTION IS INVERTED"""
+    """Check if image contains a palm leaf using binary classifier"""
 
     prediction = palm_detector.predict(image_data, verbose=0)[0][0]
-    is_palm = prediction < 0.5
+    is_palm = prediction > 0.5
     
-    logger.info(f"Palm detection: {is_palm}, prediction: {prediction}")
+    print(prediction)
     return is_palm
 
 
@@ -60,14 +60,14 @@ def get_all_predictions(image_input):
         # Preprocess image
         image_data = preprocess_image(image_input)
         
-        '''        
+         
         # Stage 1: Palm detection
         is_palm = check_palm_leaf(image_data)
         
         if not is_palm:
             logger.info(f'Image does not appear to be a palm leaf')
             return []
-        '''
+
         predictions = disease_model.predict(image_data)
         
         # Create list of all predictions with their labels and confidence scores
@@ -79,12 +79,6 @@ def get_all_predictions(image_input):
                 'confidence': float(confidence),
                 'class_index': class_index
             })
-        
-
-        predicted_class_index = np.argmax(predictions)
-        predicted_class = labels[predicted_class_index]
-        confidence = predictions[0][predicted_class_index]
-        print(f"prediction:{predicted_class}, cofidences:{predictions}")
 
         # Sort by confidence in descending order
         all_predictions.sort(key=lambda x: x['confidence'], reverse=True)
