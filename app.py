@@ -37,7 +37,7 @@ analytics_data = {
     'start_time': datetime.now()
 }
 
-with open("static/data/disease_data.json") as file:
+with open("static/disease_data.json") as file:
     disease_data = json.load(file)
 
 
