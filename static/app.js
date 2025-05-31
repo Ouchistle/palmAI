@@ -58,29 +58,29 @@ class PalmDiseaseDetector {
     }
 
     attachEventListeners() {
-        // File upload events
-        this.browseBtn.addEventListener('click', () => this.fileInput.click());
-        this.changeImageBtn.addEventListener('click', () => this.fileInput.click());
-        this.fileInput.addEventListener('change', (e) => this.handleFileSelect(e));
-        
-        // Drag and drop events
-        this.uploadArea.addEventListener('dragover', (e) => this.handleDragOver(e));
-        this.uploadArea.addEventListener('dragleave', (e) => this.handleDragLeave(e));
-        this.uploadArea.addEventListener('drop', (e) => this.handleDrop(e));
-        this.uploadArea.addEventListener('click', () => {
-            if (!this.selectedFile) this.fileInput.click();
-        });
-        
-        // Action button events
-        this.analyzeBtn.addEventListener('click', () => this.analyzeImage());
-        this.clearBtn.addEventListener('click', () => this.clearSelection());
-        this.helpBtn.addEventListener('click', () => this.showHelp());
-        this.retryBtn.addEventListener('click', () => this.hideError());
-        this.newAnalysisBtn.addEventListener('click', () => this.resetForNewAnalysis());
-        this.downloadReportBtn.addEventListener('click', () => this.downloadReport());
-        this.themeToggle.addEventListener('click', () => this.toggleTheme());
-    }
-
+    // File upload events
+    this.changeImageBtn.addEventListener('click', () => this.fileInput.click());
+    this.fileInput.addEventListener('change', (e) => this.handleFileSelect(e));
+    
+    // Drag and drop events
+    this.uploadArea.addEventListener('dragover', (e) => this.handleDragOver(e));
+    this.uploadArea.addEventListener('dragleave', (e) => this.handleDragLeave(e));
+    this.uploadArea.addEventListener('drop', (e) => this.handleDrop(e));
+    this.uploadArea.addEventListener('click', (e) => {
+        if (!this.selectedFile) {
+            this.fileInput.click();
+        }
+    });
+    
+    // Action button events
+    this.analyzeBtn.addEventListener('click', () => this.analyzeImage());
+    this.clearBtn.addEventListener('click', () => this.clearSelection());
+    this.helpBtn.addEventListener('click', () => this.showHelp());
+    this.retryBtn.addEventListener('click', () => this.hideError());
+    this.newAnalysisBtn.addEventListener('click', () => this.resetForNewAnalysis());
+    this.downloadReportBtn.addEventListener('click', () => this.downloadReport());
+    this.themeToggle.addEventListener('click', () => this.toggleTheme());
+}
     handleFileSelect(event) {
         const file = event.target.files[0];
         if (file) {
