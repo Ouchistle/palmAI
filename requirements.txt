@@ -2,4 +2,3 @@ tensorflow
 scipy
 pillow
 flask
-scikit-learn

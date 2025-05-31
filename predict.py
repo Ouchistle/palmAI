@@ -14,14 +14,10 @@ palm_detector = load_model("binary.keras")
 disease_model = load_model("disease.keras")
 
 labels = {
-    0:"black_scorch", 
-    1:"fusarium_wilt", 
-    2:"healthy",
-    3:"magnesium_deficiency", 
-    4:"manganese_deficiency", 
-    5:"parlatoria_blanchardi", 
-    6:"potassium_deficiency", 
-    7:"rachis_blight"
+    0:"disease", 
+    1:"healthy", 
+    2:"deficiency",
+    3:"pest",
 }
 
 def preprocess_image(image):
@@ -36,7 +32,7 @@ def check_palm_leaf(image_data):
     """Check if image contains a palm leaf using binary classifier"""
 
     prediction = palm_detector.predict(image_data, verbose=0)[0][0]
-    is_palm = prediction > 0.5
+    is_palm = prediction > 0.3
     
     print(prediction)
     return is_palm
