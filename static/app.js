@@ -223,7 +223,7 @@ class PalmDiseaseDetector {
         this.diseaseDescription.textContent = diseaseInfo.description;
         
         // Set primary result background based on severity
-        this.primaryResult.className = `mb-6 p-4 rounded-lg ${this.getSeverityClass(diseaseInfo.severity)}`;
+        this.primaryResult.className = `primary-result mb-6 p-4 rounded-lg ${this.getSeverityClass(diseaseInfo.severity)}`;
         
         // Populate symptoms
         this.populateList(this.symptomsList, diseaseInfo.symptoms);

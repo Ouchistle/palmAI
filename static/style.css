@@ -734,7 +734,7 @@ nav {
 
 /* Dark theme specific adjustments */
 [data-theme="dark"] .modern-upload-area:hover,
-[data-theme="dark"] .modern-upload-area.dragover {
+[data-theme="dark"] .modern-upload-area.dragover{
   background: rgba(16, 185, 129, 0.1);
 }
 
@@ -749,7 +749,7 @@ nav {
 }
 
 /* Ensure all text elements inherit proper colors in dark mode */
-[data-theme="dark"] .results-section *,
+
 [data-theme="dark"] .results-card *,
 [data-theme="dark"] .primary-result *,
 [data-theme="dark"] .alternative-disease-card * {
@@ -758,7 +758,8 @@ nav {
 
 [data-theme="dark"] .results-section h3,
 [data-theme="dark"] .results-section h4,
-[data-theme="dark"] .results-section h5 {
+[data-theme="dark"] .results-section h5,
+[data-theme="dark"] .logo-name{
   color: var(--text-primary);
 }
 
